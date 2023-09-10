@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
-    public float numberTest;
-    public bool WrongIngredient;
+    public IngredientManager ingredientManager;
+
+    public bool isCorrect;
+    
+    private bool isMoving = false;
+    private Vector3 targetPosition;
 
     void Start()
     {
@@ -15,13 +19,41 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            HandleIngredientClick();
+
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            {
+                targetPosition = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(-2.5f, 2.5f), 0);
+                isMoving = true;
+            }
+        }
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 3f * Time.deltaTime);
+            if (transform.position == targetPosition)
+            {
+                isMoving = false;
+            }
+        }
     }
 
-    private void OnMouseDown()
+    private void HandleIngredientClick()
     {
-        Debug.Log("BUTTON PRESSED");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
+        if (hit.collider != null)
+        {
+            Ingredient ingredient = hit.collider.GetComponent<Ingredient>();
+
+            if (ingredient != null)
+            {
+                ingredientManager.AddIngredient(ingredient);
+            }
+        }
     }
 
 }
