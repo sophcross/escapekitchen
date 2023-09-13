@@ -40,6 +40,7 @@ public class Ingredient : MonoBehaviour
         }
     }
 
+    // Detects that an object has been hit, checks it hit an ingredient, then adds said ingredient to the list
     private void HandleIngredientClick()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

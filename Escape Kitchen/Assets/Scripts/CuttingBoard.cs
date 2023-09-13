@@ -32,6 +32,7 @@ public class CuttingBoard : MonoBehaviour
 
     }
 
+    // Checks the list to see if any ingredient is incorrect. If a wrong ingredient is found, the game results in a loss and the loop breaks early.
     public void CheckIngredients()
     {
         bool allIngredientsCorrect = true;
@@ -53,6 +54,7 @@ public class CuttingBoard : MonoBehaviour
         }
     }
 
+    // Add function for these displaying a popup that describes the ending.
     private void GameOver()
     {
         Debug.Log("GAME OVER");

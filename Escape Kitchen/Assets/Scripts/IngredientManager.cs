@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IngredientManager : MonoBehaviour
 {
+    // Declares the list, its class, and its name
     public static List<Ingredient> ingredientsList = new List<Ingredient>();
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class IngredientManager : MonoBehaviour
         
     }
 
+    // Method to add an ingredient to the list
     public void AddIngredient(Ingredient ingredient)
     {
         ingredientsList.Add(ingredient);
