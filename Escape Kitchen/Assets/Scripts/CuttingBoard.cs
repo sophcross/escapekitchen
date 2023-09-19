@@ -9,6 +9,9 @@ public class CuttingBoard : MonoBehaviour
 
     private bool gameWon = false;
 
+    public CongratulationsPopup congratulationsPopup;
+    public GameOverPopup gameOverPopup;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,12 +61,21 @@ public class CuttingBoard : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("GAME OVER");
+        gameOverPopup.ShowPopup("You have failed. Prepare to meet a fiery end.");
     }
 
     private void WinGame()
     {
         Debug.Log("YOU WIN!");
         gameWon = true;
+        if(congratulationsPopup != null)
+        {
+            congratulationsPopup.ShowPopup("Congratulations! You win! The prize is continuing to be trapped here forever.");
+        }
+        else
+        {
+            Debug.LogError("CongratulationsPopup reference is not set.");
+        }
     }
 
 }
