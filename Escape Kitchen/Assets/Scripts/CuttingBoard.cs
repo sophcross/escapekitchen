@@ -94,7 +94,7 @@ public class CuttingBoard : MonoBehaviour
 
         if (congratulationsPopup != null)
         {
-            congratulationsPopup.ShowPopup("The pie explodes into an interdimensional portal. This is your chance!");
+            congratulationsPopup.ShowPopup("The pie caves in on itself and rips through time and space. This is your chance! Jump in! Be free!");
         }
         else
         {
