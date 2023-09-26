@@ -9,6 +9,8 @@ public class CuttingBoard : MonoBehaviour
 
     private bool gameWon = false;
 
+    private bool secretIngredientFound = false;
+
     public CongratulationsPopup congratulationsPopup;
     public GameOverPopup gameOverPopup;
 
@@ -42,7 +44,14 @@ public class CuttingBoard : MonoBehaviour
 
         foreach (Ingredient ingredient in IngredientManager.ingredientsList)
         {
-            if (!ingredient.isCorrect)
+            if (ingredient.isSecret)
+            {
+                SecretEnding();
+                allIngredientsCorrect = false;
+                break;
+            }
+
+            else if (!ingredient.isCorrect)
             {
                 // Wrong ingredient found, trigger Game Over
                 GameOver();
@@ -51,7 +60,7 @@ public class CuttingBoard : MonoBehaviour
             }
         }
 
-        if (allIngredientsCorrect && !gameWon)
+        if (allIngredientsCorrect && !gameWon && !secretIngredientFound)
         {
             WinGame();
         }
@@ -71,6 +80,21 @@ public class CuttingBoard : MonoBehaviour
         if(congratulationsPopup != null)
         {
             congratulationsPopup.ShowPopup("Congratulations! You win! The prize is continuing to be trapped here forever.");
+        }
+        else
+        {
+            Debug.LogError("CongratulationsPopup reference is not set.");
+        }
+    }
+
+    private void SecretEnding()
+    {
+        Debug.Log("SECRET ENDING!");
+        secretIngredientFound = true;
+
+        if (congratulationsPopup != null)
+        {
+            congratulationsPopup.ShowPopup("The pie explodes into an interdimensional portal. This is your chance!");
         }
         else
         {

@@ -7,6 +7,8 @@ public class Ingredient : MonoBehaviour
     public IngredientManager ingredientManager;
 
     public bool isCorrect;
+
+    public bool isSecret;
     
     private bool isMoving = false;
     private Vector3 targetPosition;
