@@ -2,28 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CuttingBoard : MonoBehaviour
 {
     private bool spacebarPressed = false;
+    private int completedLevels = 0;
 
     private bool gameWon = false;
 
-    private bool secretIngredientFound = false;
-
     public CongratulationsPopup congratulationsPopup;
     public GameOverPopup gameOverPopup;
+    public float completionPopupDuration = 5f;
+
+    private int currentLevelIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!gameWon && Input.GetKeyDown(KeyCode.Space) && !spacebarPressed)
+        if (Input.GetKeyDown(KeyCode.Space) && !spacebarPressed)
         {
             spacebarPressed = true;
             
@@ -44,14 +47,7 @@ public class CuttingBoard : MonoBehaviour
 
         foreach (Ingredient ingredient in IngredientManager.ingredientsList)
         {
-            if (ingredient.isSecret)
-            {
-                SecretEnding();
-                allIngredientsCorrect = false;
-                break;
-            }
-
-            else if (!ingredient.isCorrect)
+            if (!ingredient.isCorrect)
             {
                 // Wrong ingredient found, trigger Game Over
                 GameOver();
@@ -60,13 +56,13 @@ public class CuttingBoard : MonoBehaviour
             }
         }
 
-        if (allIngredientsCorrect && !gameWon && !secretIngredientFound)
+        if (allIngredientsCorrect)
         {
-            WinGame();
+            StartCoroutine(CompleteLevel());
         }
     }
 
-    // Add function for these displaying a popup that describes the ending.
+    
     private void GameOver()
     {
         Debug.Log("GAME OVER");
@@ -90,7 +86,6 @@ public class CuttingBoard : MonoBehaviour
     private void SecretEnding()
     {
         Debug.Log("SECRET ENDING!");
-        secretIngredientFound = true;
 
         if (congratulationsPopup != null)
         {
@@ -100,6 +95,28 @@ public class CuttingBoard : MonoBehaviour
         {
             Debug.LogError("CongratulationsPopup reference is not set.");
         }
+    }
+
+    private IEnumerator CompleteLevel()
+    {
+        Debug.Log("Level Completed!");
+
+        if (currentLevelIndex == 2)
+        {
+            if (SecretIngredientManager.CanTriggerSecretEnding())
+            {
+                SecretEnding();
+            }
+            else
+            {
+                WinGame();
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(currentLevelIndex + 1);
+        }
+        yield return new WaitForSeconds(completionPopupDuration);
     }
 
 }
