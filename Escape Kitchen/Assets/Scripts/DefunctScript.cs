@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ingredient : MonoBehaviour
+public class DefunctScript : MonoBehaviour
 {
-    public IngredientManager ingredientManager;
+   /* public IngredientManager ingredientManager;
 
     public bool isCorrect;
 
     public bool isSecret;
-
+    
     private bool isMoving = false;
     private Vector3 targetPosition;
 
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -57,5 +57,6 @@ public class Ingredient : MonoBehaviour
                 ingredientManager.AddIngredient(ingredient);
             }
         }
-    }
+    } */
+
 }

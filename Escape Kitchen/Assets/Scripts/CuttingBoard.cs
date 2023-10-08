@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class CuttingBoard : MonoBehaviour
 {
     private bool spacebarPressed = false;
-    private int completedLevels = 0;
 
-    private bool gameWon = false;
 
     public CongratulationsPopup congratulationsPopup;
     public GameOverPopup gameOverPopup;
     public float completionPopupDuration = 5f;
 
     private int currentLevelIndex;
+
+    private int secretIngredientsFound = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,11 @@ public class CuttingBoard : MonoBehaviour
                 allIngredientsCorrect = false;
                 break;
             }
+
+            if (ingredient.isSecret)
+            {
+                secretIngredientsFound++;
+            }
         }
 
         if (allIngredientsCorrect)
@@ -72,7 +77,6 @@ public class CuttingBoard : MonoBehaviour
     private void WinGame()
     {
         Debug.Log("YOU WIN!");
-        gameWon = true;
         if(congratulationsPopup != null)
         {
             congratulationsPopup.ShowPopup("Congratulations! You win! The prize is continuing to be trapped here forever.");
@@ -101,18 +105,15 @@ public class CuttingBoard : MonoBehaviour
     {
         Debug.Log("Level Completed!");
 
-        if (currentLevelIndex == 2)
+        if (currentLevelIndex == 3 && secretIngredientsFound >= 3)
         {
-            if (SecretIngredientManager.CanTriggerSecretEnding())
-            {
-                SecretEnding();
-            }
-            else
-            {
-                WinGame();
-            }
+            SecretEnding();
         }
-        else
+        else if (currentLevelIndex == 3 && secretIngredientsFound < 3)
+        {
+            WinGame();
+        }
+        else if (currentLevelIndex < 3)
         {
             SceneManager.LoadScene(currentLevelIndex + 1);
         }
