@@ -10,6 +10,7 @@ public class CuttingBoard : MonoBehaviour
 
 
     public CongratulationsPopup congratulationsPopup;
+    public SecretPopup secretPopup;
     public GameOverPopup gameOverPopup;
     public float completionPopupDuration = 5f;
 
@@ -79,7 +80,7 @@ public class CuttingBoard : MonoBehaviour
         Debug.Log("YOU WIN!");
         if(congratulationsPopup != null)
         {
-            congratulationsPopup.ShowPopup("Congratulations! You win! The prize is continuing to be trapped here forever.");
+            congratulationsPopup.ShowPopup();
         }
         else
         {
@@ -91,13 +92,13 @@ public class CuttingBoard : MonoBehaviour
     {
         Debug.Log("SECRET ENDING!");
 
-        if (congratulationsPopup != null)
+        if (secretPopup != null)
         {
-            congratulationsPopup.ShowPopup("The pie caves in on itself and rips through time and space. This is your chance! Jump in! Be free!");
+            secretPopup.ShowPopup();
         }
         else
         {
-            Debug.LogError("CongratulationsPopup reference is not set.");
+            Debug.LogError("SecretPopup reference is not set.");
         }
     }
 

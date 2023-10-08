@@ -38,9 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 2274992201
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Ingredients
     uniqueID: 1223688501
+    locked: 0
+  - name: OverBoard
+    uniqueID: 596068743
     locked: 0
