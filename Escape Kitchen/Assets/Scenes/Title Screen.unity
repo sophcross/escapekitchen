@@ -566,7 +566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bellSound: {fileID: 1845293642}
   fadeImage: {fileID: 25272767}
-  fadeDuration: 2
+  fadeDuration: 1.5
 --- !u!1 &1845293641
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fbd78e226b69c0645b18425e4d76aec9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 014ca884f20209846963489efa8aeb03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.5803922}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}

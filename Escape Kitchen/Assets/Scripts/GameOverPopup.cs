@@ -8,9 +8,8 @@ public class GameOverPopup : MonoBehaviour
     public GameObject popupPanel;
     public TextMeshProUGUI popupText;
 
-    public void ShowPopup(string message)
+    public void ShowPopup()
     {
-        popupText.text = message;
         popupPanel.SetActive(true);
     }
 

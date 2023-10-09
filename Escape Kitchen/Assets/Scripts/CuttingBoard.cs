@@ -18,13 +18,11 @@ public class CuttingBoard : MonoBehaviour
 
     private int secretIngredientsFound = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !spacebarPressed)
@@ -72,7 +70,7 @@ public class CuttingBoard : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("GAME OVER");
-        gameOverPopup.ShowPopup("You have failed. Prepare to meet a fiery end.");
+        gameOverPopup.ShowPopup();
     }
 
     private void WinGame()
