@@ -8,9 +8,14 @@ public class Recipe : MonoBehaviour
 {
     public Image recipeCard;
 
+    private bool isImageVisible = false;
+
     private void Start()
     {
         recipeCard.gameObject.SetActive(false);
+        isImageVisible = false;
+
+        DisableAllInteractions();
 
         Invoke("ShowImage", 0.1f);
     }
@@ -18,12 +23,28 @@ public class Recipe : MonoBehaviour
     private void ShowImage()
     {
         recipeCard.gameObject.SetActive(true);
+        isImageVisible = true;
 
-        Invoke("HideImage", 5f);
+        DisableAllInteractions();
+
+        Invoke("HideImage", 3f);
     }
 
     private void HideImage()
     {
         recipeCard.gameObject.SetActive(false);
+        isImageVisible = false;
+
+        EnableAllInteractions();
+    }
+
+    private void DisableAllInteractions()
+    {
+
+    }
+
+    private void EnableAllInteractions()
+    {
+
     }
 }
